@@ -13,3 +13,12 @@ def hello_world(request):
     """
     now = datetime.now().strftime('%b %dth, %Y - %H:%M hrs')
     return HttpResponse('Oh Hi! Current server time is {now}'.format(now=now))
+
+
+def hi(request):
+    """Returns hi
+
+    Args:
+        request (HTTP]): Returns simple hi
+    """
+    return HttpResponse("Hi")
