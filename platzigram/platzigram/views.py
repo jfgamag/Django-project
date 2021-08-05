@@ -1,5 +1,6 @@
 from django.http.response import HttpResponse
-from datetime import date, datetime
+from datetime import datetime
+from django.http import JsonResponse
 
 
 def hello_world(request):
@@ -21,5 +22,7 @@ def hi(request):
     Args:
         request (HTTP]): Returns simple hi
     """
-    import pdb; pdb.set_trace()
-    return HttpResponse("Hi")
+    numbers = request.GET['numbers'].split(',')
+    ord_numb = sorted([int(i) for i in numbers])
+    return JsonResponse(ord_numb, safe=False)
+    
