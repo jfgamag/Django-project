@@ -11,5 +11,5 @@ def hello_world(request):
     Returns:
         Greeting: returns a greeting
     """
-    now = datetime.now()
-    return HttpResponse('Oh Hi! Current server time is {now}'.format(now=str(now)))
+    now = datetime.now().strftime('%b %dth, %Y - %H:%M hrs')
+    return HttpResponse('Oh Hi! Current server time is {now}'.format(now=now))
