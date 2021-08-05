@@ -21,4 +21,5 @@ def hi(request):
     Args:
         request (HTTP]): Returns simple hi
     """
+    import pdb; pdb.set_trace()
     return HttpResponse("Hi")
