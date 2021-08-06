@@ -16,13 +16,14 @@ def hello_world(request):
     return HttpResponse('Oh Hi! Current server time is {now}'.format(now=now))
 
 
-def hi(request):
-    """Returns hi
-
-    Args:
-        request (HTTP]): Returns simple hi
-    """
+def sort_n(request):
+    
     numbers = request.GET['numbers'].split(',')
     ord_numb = sorted([int(i) for i in numbers])
-    return JsonResponse(ord_numb, safe=False)
+    data = {
+        'status': 'OK',
+        'numbers': ord_numb,
+        'Message': 'Integer sorted succesfully'
+    }
+    return JsonResponse(data)
     

@@ -19,5 +19,5 @@ from platzigram import views
 
 urlpatterns = [
     path('hello-world', views.hello_world),
-    path('hi', views.hi)
+    path('sort_numbers', views.sort_n)
 ]
