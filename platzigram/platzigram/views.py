@@ -26,4 +26,12 @@ def sort_n(request):
         'Message': 'Integer sorted succesfully'
     }
     return JsonResponse(data)
+
+
+def hello(request, name, age):
+    if age >= 15:
+        message = 'Hi {}, you are old enough to access Platizgram'.format(name)
+    else:
+        message = 'Hi {}, you must be 15 to access platzigram. Come back in {} years'.format(name, (15-age))
     
+    return HttpResponse(message)
