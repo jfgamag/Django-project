@@ -11,6 +11,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=20)
 
     bio = models.TextField(blank=True)
+    is_admin = models.BooleanField(default=False)
 
     birthdate = models.DateField(blank=True, null=True)
 
