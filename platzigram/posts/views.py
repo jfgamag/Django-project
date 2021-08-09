@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+#Posts views
+from django.shortcuts import render
 
 # Utilities
 from datetime import datetime
@@ -27,19 +28,5 @@ posts = [
 
 
 def list_posts(request):
-    """Lists existing posts
-
-    Args:
-        request (HTTP): 
-    """
-
-    content = []
-
-    for post in posts:
-        content.append("""
-            <p><strong>{name}</strong></p>
-            <p><small>{user} - <i>{timestamp}</i></small></p>
-            <figure><img src='{picture}'></figure>
-        """.format(**post))
-   
-    return HttpResponse('<br>'.join(content))
+    
+    return render(request, 'feed.html', {'name': 'Juan'})

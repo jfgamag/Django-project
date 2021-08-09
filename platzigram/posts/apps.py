@@ -1,5 +1,5 @@
-    """Posts application module
-    """
+"""Posts application module"""
+
 from django.apps import AppConfig
 
 
