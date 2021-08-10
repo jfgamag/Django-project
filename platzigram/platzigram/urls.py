@@ -19,6 +19,7 @@ from platzigram import views as local_views
 from posts import views as post_views
 
 urlpatterns = [
+    path('admin', admin.site.urls),
     path('hello-world', local_views.hello_world),
     path('sort_numbers', local_views.sort_n),
     path('hi/<str:name>/<int:age>', local_views.hello),
