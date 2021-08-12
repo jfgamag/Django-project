@@ -5,7 +5,8 @@ from users.models import Profile
 # Register your models here.
 
 @admin.register(Profile)
-class Profileadmin(admin.ModelAdmin):
+class ProfileAdmin(admin.ModelAdmin):
     """Profile admin
     """
-    pass
+    list_display = ('user', 'website', 'phone_number', 'picture')
+
