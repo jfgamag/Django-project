@@ -14,3 +14,11 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display_links = ('pk','user')
     #Editable fields in django admin
     list_editable = ('phone_number', 'website', 'picture')
+    #Search fields
+    search_fields = (
+        'user__email', 
+        'user__first_name', 
+        'user__last_name', 
+        'user__phone_number'
+        )
+    
