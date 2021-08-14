@@ -8,5 +8,9 @@ from users.models import Profile
 class ProfileAdmin(admin.ModelAdmin):
     """Profile admin
     """
-    list_display = ('user', 'website', 'phone_number', 'picture')
-
+    # Display fields
+    list_display = ('pk','user', 'website', 'phone_number', 'picture')
+    # Display links that show user details
+    list_display_links = ('pk','user')
+    #Editable fields in django admin
+    list_editable = ('phone_number', 'website', 'picture')
