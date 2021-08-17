@@ -51,5 +51,25 @@ class ProfileAdmin(admin.ModelAdmin):
     )
     readonly_fields = ('created', 'modified',)
 
+class ProfileInline(admin.StackedInline):
+    """Profile in-line admin for users"""
+    
+    model = Profile
+    can_delete = False
+    verbose_name_plural = 'profiles'
 
+class UserAdmin(BaseUserAdmin):
+    """Adds profile admin to base user admin"""
+    inlines = (ProfileInline,)
+    list_display = (
+        'username',
+        'email',
+        'first_name',
+        "last_name",
+        'is_active',
+        'is_staff'
+        )
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
