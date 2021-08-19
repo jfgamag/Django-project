@@ -1,8 +1,9 @@
 
 # Django
-
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+
 
 from posts import views as posts_views
 from users import models as user_m
