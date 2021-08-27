@@ -20,7 +20,11 @@ def login_view(request):
 
     return render(request, 'users/login.html')
 
-
+@login_required
+def logout_view(request):
+    """ User logout of the session"""
+    logout(request)
+    return redirect('login')
 
 
 
