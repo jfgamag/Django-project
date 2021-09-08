@@ -5,8 +5,7 @@ from django.shortcuts import redirect, render
 from posts.models import Post
 # Forms
 from posts.forms import PostForm
-# Utilities
-from datetime import datetime
+
 
 @login_required
 def list_posts(request):

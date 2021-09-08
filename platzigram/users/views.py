@@ -4,15 +4,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
-
-#Forms
-from users.forms import ProfileForm, SignupForm
-=======
 #Forms
 from users.forms import ProfileForm, SignupForm
 
->>>>>>> c34caaed19f6ec92a20d0bc0bf68932beabbdb54
 
 def login_view(request):
     """Login view."""
@@ -29,7 +23,6 @@ def login_view(request):
     return render(request, 'users/login.html')
 
 def signup_view(request):
-<<<<<<< HEAD
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -44,25 +37,6 @@ def signup_view(request):
         context={'form': form}
     )
 
-=======
-    if request.method == "POST":
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            form.save
-            return redirect('login')
-    else: 
-        form = SignupForm()
-        
-    return render(
-        request=request,
-        template_name='users/signup.html',
-        context= {'form': form}
-    )
-
-
-
-
->>>>>>> c34caaed19f6ec92a20d0bc0bf68932beabbdb54
 @login_required
 def update_profile(request):
     profile = request.user.profile
