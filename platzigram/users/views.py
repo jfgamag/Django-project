@@ -1,9 +1,10 @@
 """Users views."""
 
 # Django
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
+from django.contrib.auth import views as auth_views
 from django.views.generic import DetailView, FormView, UpdateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,7 +14,6 @@ from users.forms import SignupForm
 from django.contrib.auth.models import User
 from posts.models import Post
 from users.models import Profile
-
 
 
 class UserDetailView(LoginRequiredMixin,DetailView):
@@ -30,21 +30,6 @@ class UserDetailView(LoginRequiredMixin,DetailView):
         context['posts'] = Post.objects.filter(user=user).order_by('-created')
         return context
 
-
-
-def login_view(request):
-    """Login view."""
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('posts:feed')
-        else:
-            return render(request, 'users/login.html', {'error': 'Invalid username and password'})
-
-    return render(request, 'users/login.html')
 
 class SignupView(FormView):
     template_name = 'users/signup.html'
@@ -63,13 +48,26 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ['website', 'biography', 'phone_number', 'picture']
 
+    def get_object(self):
+        """Returns users profile"""
+        return self.request.user.profile
+    
+    def get_success_url(self):
+        """Return to user profile"""
+        username = self.object.user.username
+
+        return reverse('users:detail', kwargs={'username': username})
+
+class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
+    """Logout view"""
+    template_name = 'users/logout.html'
+
+class LoginView(auth_views.LoginView):
+    """Login view"""
+    template_name = 'users/login.html'
+    redirect_authenticated_user = True
 
 
-@login_required
-def logout_view(request):
-    """ User logout of the session"""
-    logout(request)
-    return redirect('users:login')
 
 
 
